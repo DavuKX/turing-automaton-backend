@@ -14,15 +14,14 @@ async def root():
     return {"message": "Hello World"}
 
 
-
 @app.get("/validated_words/{uuid}")
-async def read_item(uuid: str):
+async def get_validated_words_by_uuid(uuid: str):
     repository = ValidatedWordsRepository()
     by_uuid = repository.get_by_uuid(uuid)
     return by_uuid
 
 
 @app.post("/validated_words/")
-async def create_item(validated_word_create: ValidatedWordCreate) -> validated_word.ValidatedWord:
+async def create_validated_word(validated_word_create: ValidatedWordCreate) -> validated_word.ValidatedWord:
     repository = ValidatedWordsRepository()
     return repository.create(validated_word_create)
