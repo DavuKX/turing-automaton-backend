@@ -14,6 +14,7 @@ async def root():
     return {"message": "Hello World"}
 
 
+
 @app.get("/validated_words/{uuid}")
 async def read_item(uuid: str):
     repository = ValidatedWordsRepository()
