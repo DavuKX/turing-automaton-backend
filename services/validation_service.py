@@ -15,11 +15,7 @@ class ValidationService:
         acceptance_states = self.automaton_data['acceptanceStates']
         tape = list(self.word)
         current_symbol_index = 0
-        path = [{
-            'state': current_state,
-            'tape': tape.copy(),
-            'current_symbol_index': current_symbol_index
-        }]
+        path = []
 
         for symbol in tape:
             possible_transitions = self.automaton_data['transitions'][current_state]

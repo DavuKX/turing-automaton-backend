@@ -1,3 +1,4 @@
+import json
 from typing import Type
 
 from sqlalchemy.orm import Session
@@ -34,4 +35,5 @@ class ValidatedWordsRepository:
         self.db.add(db_validated_word)
         self.db.commit()
         self.db.refresh(db_validated_word)
+        db_validated_word.path = json.loads(db_validated_word.path)
         return db_validated_word
