@@ -15,8 +15,12 @@ class ValidatedWordsRepository:
         return self.db.query(ValidatedWord).all()
 
     def get_by_uuid(self, uuid: str):
-        uuid__all = self.db.query(ValidatedWord).filter(ValidatedWord.uuid == uuid).all()
-        print(uuid__all)
+        # sort by created_at desc
+        uuid__all = (self.db
+                     .query(ValidatedWord)
+                     .filter(ValidatedWord.uuid == uuid)
+                     .order_by(ValidatedWord.created_at.desc())
+                     .all())
         return uuid__all
 
     def create(self, validated_word: ValidatedWordCreate) -> ValidatedWord:
