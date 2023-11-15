@@ -28,7 +28,7 @@ class ValidationService:
             write = transition['write'] if transition['write'] != '' else 'λ'
             action = transition['move']
             path.append({
-                'initial': current_state,
+                'initial_state': current_state,
                 'next_state': transition['to'],
                 'tape': tape.copy(),
                 'current_symbol_index': current_symbol_index,
