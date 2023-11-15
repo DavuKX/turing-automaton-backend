@@ -82,6 +82,7 @@ class ValidationService:
             'edge_label': 'λ/λ/R',
             'symbol': 'λ',
         })
+        current_state = 'q3'
 
         is_valid = current_state in acceptance_states
         return self.save_result(is_valid, tape, path)
