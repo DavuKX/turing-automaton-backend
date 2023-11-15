@@ -1,10 +1,10 @@
-from typing import List, Type
+from typing import Type
 
 from sqlalchemy.orm import Session
 
 from database.database import get_db
 from database.models.validated_word import ValidatedWord
-from database.schemas.validated_word import ValidatedWordCreate
+from dto.validated_word import ValidatedWordCreate
 
 
 class ValidatedWordsRepository:
@@ -23,6 +23,7 @@ class ValidatedWordsRepository:
         db_validated_word = ValidatedWord(
             uuid=validated_word.uuid,
             word=validated_word.word,
+            result_word=validated_word.result_word,
             is_valid=validated_word.is_valid,
             path=validated_word.path
         )

@@ -4,6 +4,7 @@ from pydantic import BaseModel
 class ValidatedWordBase(BaseModel):
     uuid: str
     word: str
+    result_word: str
     is_valid: bool
     path: str
 

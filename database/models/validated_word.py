@@ -11,6 +11,7 @@ class ValidatedWord(Base):
     id = Column(Integer, primary_key=True, index=True)
     uuid = Column(String)
     word = Column(String)
+    result_word = Column(String)
     is_valid = Column(Boolean)
     path = Column(String)
 
