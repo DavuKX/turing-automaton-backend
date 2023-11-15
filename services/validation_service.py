@@ -44,6 +44,45 @@ class ValidationService:
             elif action == 'L':
                 current_symbol_index -= 1
 
+        transition = self.automaton_data['transitions'][current_state]
+        transition = [transition for transition in transition if transition['read'] == '']
+        transition = transition[0]
+        current_symbol_index -= 1
+
+        path.append({
+            'initial_state': current_state,
+            'next_state': transition['to'],
+            'tape': tape.copy(),
+            'current_symbol_index': current_symbol_index,
+            'edge_label': 'λ/λ/' + transition['move'],
+            'symbol': 'λ',
+        })
+        current_state = transition['to']
+
+        while current_symbol_index > 0:
+            transition = self.automaton_data['transitions']['q2']
+            transition = [transition for transition in transition if transition['read'] == 'a']
+            transition = transition[0]
+            current_symbol_index -= 1
+            path.append({
+                'initial_state': current_state,
+                'next_state': transition['to'],
+                'tape': tape.copy(),
+                'current_symbol_index': current_symbol_index,
+                'edge_label': 'a/a/' + transition['move'],
+                'symbol': 'a',
+            })
+            current_state = transition['to']
+
+        path.append({
+            'initial_state': current_state,
+            'next_state': 'q3',
+            'tape': tape.copy(),
+            'current_symbol_index': current_symbol_index,
+            'edge_label': 'λ/λ/R',
+            'symbol': 'λ',
+        })
+
         is_valid = current_state in acceptance_states
         return self.save_result(is_valid, tape, path)
 
